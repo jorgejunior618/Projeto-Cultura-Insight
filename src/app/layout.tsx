@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import "./globals.css";
+import Header from "../components/header";
+import StoreProvider from "./StoreProvider";
+import { containers } from "../constants";
 
 export const metadata: Metadata = {
   title: "Projeto por Jorge Junior",
@@ -15,7 +18,10 @@ export default function RootLayout({
   return (
     <html lang="pt-Br">
       <body>
-        <AntdRegistry>{children}</AntdRegistry>
+        <StoreProvider>
+          <Header logged={true} />
+          <AntdRegistry><main className={containers.viewContainer}>{children}</main></AntdRegistry>
+        </StoreProvider>
       </body>
     </html>
   );
