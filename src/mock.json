@@ -1,0 +1,26 @@
+{
+  "fornecedores": [
+    {
+      "name": "Fornecedor de teste 1",
+      "alternativeName": "nome mais bonitinho",
+      "cnpj": "00.000.000/0000-00",
+      "address": {
+        "line_one": "Avenida da Suposição, nº 000, Bairro terra do nunca, Fortaleza",
+        "line_two": "",
+        "state": "CE",
+        "country": "Brasil"
+      }
+    },
+    {
+      "name": "Fornecedor de teste 2",
+      "alternativeName": "otro nome bonitinho",
+      "cnpj": "99.999.999/9999-99",
+      "address": {
+        "line_one": "Avenida do nunca, nº 999, Bairro da Suposição, Fortaleza",
+        "line_two": "Proximo da terra prometida",
+        "state": "CE",
+        "country": "Brasil"
+      }
+    }
+  ]
+}
