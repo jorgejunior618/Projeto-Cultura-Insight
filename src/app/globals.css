@@ -35,8 +35,11 @@ a {
 .font-regular {
   font-size: 1rem;
 }
+.font-medium {
+  font-size: 1.3rem;
+}
 .font-big {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
 }
 .font-xtrabig {
   font-size: 2.5rem;

@@ -4,6 +4,7 @@ export const containers = {
 export const fontSizes = {
   small: 'font-small',
   regular: 'font-regular',
+  medium: 'font-medium',
   big: 'font-big',
   xtraBig: 'font-xtrabig'
 }
