@@ -1,10 +1,10 @@
 "use client"
 
-import { useAppDispatch } from "@/src/hooks";
+import { useAppDispatch } from "@/hooks";
 import { useRouter } from "next/navigation";
 import { HeaderContainer, LoginContainer, LogoutContainer } from "./styled";
 import { LogoutOutlined } from "@ant-design/icons";
-import { colors, fontSizes, fontWeights } from "@/src/constants";
+import { colors, fontSizes, fontWeights } from "@/constants";
 
 type HeaderProps = {
   logged: boolean;

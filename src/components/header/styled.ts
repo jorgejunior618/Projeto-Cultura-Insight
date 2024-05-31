@@ -1,4 +1,4 @@
-import { colors } from "@/src/constants";
+import { colors } from "@/constants";
 import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
