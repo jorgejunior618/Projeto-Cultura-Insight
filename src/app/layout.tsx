@@ -20,7 +20,9 @@ export default function RootLayout({
       <body>
         <StoreProvider>
           <Header logged={true} />
-          <AntdRegistry><main className={containers.viewContainer}>{children}</main></AntdRegistry>
+          <AntdRegistry><main className={containers.viewContainer}>
+            <section className={containers.mainContainer}>{children}</section>
+          </main></AntdRegistry>
         </StoreProvider>
       </body>
     </html>

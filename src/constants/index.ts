@@ -1,5 +1,6 @@
 export const containers = {
-  viewContainer: 'viewContainer'
+  viewContainer: 'viewContainer',
+  mainContainer: 'mainContainer'
 }
 export const fontSizes = {
   small: 'font-small',
