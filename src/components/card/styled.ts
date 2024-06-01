@@ -43,5 +43,6 @@ export const CardContainer = styled.li`
   }
   &:hover {
     width: 98.5%;
+    box-shadow: 0 3px 3px #FFFFFF20;
   }
 `;
