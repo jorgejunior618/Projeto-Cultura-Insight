@@ -4,25 +4,61 @@ import styled from "styled-components";
 export const HomeContainer = styled.section`
   border-top: 1px solid white;
   padding-top: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
-  li {
-    h2 {
-      align-items: center;
-    }
-    p {
-      margin: 6px 0 4px;
-    }
-    .options {
-      cursor: pointer;
-      display: flex;
-      width: fit-content;
-      padding: 8px;
-      border-radius: 8px;
-      border: 3px solid ${colors.mainBackground};
-
-      span svg {
-        font-size: 1.5rem;
+  ul {
+    flex: 1;
+    padding-bottom: 25px;
+    li {
+      h2 {
+        align-items: center;
       }
+      p {
+        margin: 6px 0 4px;
+      }
+      .options {
+        cursor: pointer;
+        display: flex;
+        width: fit-content;
+        padding: 8px;
+        border-radius: 8px;
+        border: 3px solid ${colors.mainBackground};
+  
+        span svg {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+  #reload {
+    display: flex;
+    padding: 5px 25px;
+    left: 0;
+    right: 0;
+    position: absolute;
+    top: 115px;
+    z-index: 0;
+    justify-content: center;
+    overflow: hidden;
+
+    p {
+      cursor: pointer;
+      transform: translateY(calc(-100% - 8px));
+      transition: transform .5s;
+      padding: 12px 15px;
+      border-radius: 50px;
+      background-color: ${colors.secBackground};
+      box-shadow: 0 0 3px #FFFFFF20;
+      display: flex;
+      span svg {
+        fill: ${colors.primary};
+        font-size: 1.2rem;
+      }
+    }
+    &:hover p {
+      transform: translateY(0);
     }
   }
 `;
