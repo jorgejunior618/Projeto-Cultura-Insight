@@ -6,6 +6,8 @@ const secretKey = "secret";
 const sessionName = "suppliers-insghtlab-session";
 const key = new TextEncoder().encode(secretKey);
 
+const setExpirationTime = (mins: number) => new Date(Date.now() + mins * 60 * 1000);
+
 export async function encrypt(payload: any) {
   return await new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
@@ -24,7 +26,7 @@ export async function decrypt(input: string): Promise<any> {
 export async function login(formData: FormData) {
   const user = { email: formData.get("email"), name: "John" };
 
-  const expires = new Date(Date.now() + 60 * 1000);
+  const expires = setExpirationTime(1);
   const session = await encrypt({ user, expires });
 
   cookies().set(sessionName, session, { expires, httpOnly: true });
@@ -45,7 +47,7 @@ export async function updateSession(request: NextRequest) {
   if (!session) return;
 
   const parsed = await decrypt(session);
-  parsed.expires = new Date(Date.now() + 60 * 1000);
+  parsed.expires = setExpirationTime(1);
   const res = NextResponse.next();
   res.cookies.set({
     name: sessionName,
