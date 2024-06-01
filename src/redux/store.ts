@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-// import loginReducer from './login/loginSlice';
+import homeReducer from './home/homeSlice';
+import supplierReducer from './supplier/supplierSlice';
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      // homeState: {},
+      homeState: homeReducer,
+      supplierState: supplierReducer,
     }
   });
 }
