@@ -6,6 +6,7 @@ import { message } from 'antd';
 import initialState from './initialState';
 
 import mockData from '@/mock.json';
+import supplierServices from '@/services/supplier.services';
 
 const homeSlice = createSlice({
   name: 'homeSlice',
@@ -23,7 +24,7 @@ function searchSuppliers() {
   return async function (dispatch: DispatchType) {
     dispatch(startLoading());
     try {
-      const suppliers = mockData.suppliers;
+      const suppliers = supplierServices.getSuppliers();
 
       await sleep(1500);
 
@@ -43,6 +44,7 @@ function removeSupplier(supplierID: string) {
     dispatch(startLoading());
 
     try {
+      supplierServices.deleteSupplier(supplierID);
       dispatch(deleteSupplier(supplierID));
       message.info(`Fornecedor [CNPJ: ${supplierID}] removido com sucesso`);
     } catch (error) {
