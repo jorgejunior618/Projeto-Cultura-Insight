@@ -8,11 +8,17 @@ body, body * {
   font-size: 1rem;
   font-family: "Nunito", sans-serif;
   font-optical-sizing: auto;
-  font-style: normal;
-  color: white;
   font-weight: 400;
   text-decoration: none;
   text-transform: none;
+}
+.ant-col,
+div input,
+section input,
+form input,
+input.ant-input {
+  font-family: "Nunito", Helvetica, sans-serif !important;
+  font-size: 1rem !important;
 }
 body {
   background-color: #0A0F32;
@@ -32,7 +38,13 @@ body {
   height: 100%;
   width: 100%;
   max-width: 1100px;
+  font-size: 1rem;
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: white;
 }
+
 span.ant-spin-dot {
   width: 1.5rem !important;
   height: 1.5rem !important;
@@ -73,4 +85,27 @@ a {
 }
 .weigth-xtrabold {
   font-weight: 800;
+}
+
+@media only screen and (max-width: 1150px) {
+  .viewContainer .mainContainer {
+    width: calc(100% - 50px);
+  }
+}
+@media only screen and (max-width: 750px) {
+  .ant-row {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .ant-col,
+  .ant-col-1, .ant-col-2, .ant-col-3, .ant-col-4, .ant-col-5, .ant-col-6,
+  .ant-col-7, .ant-col-8, .ant-col-9, .ant-col-10, .ant-col-11, .ant-col-12,
+  .ant-col-13, .ant-col-14, .ant-col-15, .ant-col-16, .ant-col-17, .ant-col-18,
+  .ant-col-19, .ant-col-20, .ant-col-21, .ant-col-22, .ant-col-23, .ant-col-24 {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .font-big, .font-xtrabig {
+    font-size: 1.5rem;
+  }
 }
