@@ -39,5 +39,6 @@ export type HomeStateType = {
 export type SupplierStateType = {
   loading: boolean;
   editing: boolean;
+  completed: boolean;
   supplier: SupplierType;
 };

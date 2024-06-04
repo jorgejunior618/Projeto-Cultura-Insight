@@ -6,13 +6,20 @@ import { DispatchType, SupplierEditingType, SupplierType } from '../reduxTypes';
 import initialState from './initialState';
 import supplierServices from '@/services/supplier.services';
 
-const homeSlice = createSlice({
+const supplierSlice = createSlice({
   name: 'supplierSlice',
   initialState,
   reducers,
 })
 
-const { startLoading, stopLoading, changeSupplier } = homeSlice.actions;
+const {
+  startLoading,
+  stopLoading,
+  changeSupplier,
+  initEditing,
+  clearSupplierState,
+  completeEditing,
+} = supplierSlice.actions;
 
 function sleep(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -22,14 +29,12 @@ function searchSupplier(supplierID: string) {
   return async function (dispatch: DispatchType) {
     dispatch(startLoading());
     try {
-      const supplier = supplierServices.getSupplier(supplierID);
+      const supplier = await supplierServices.getSupplier(supplierID);
 
-      await sleep(1500);
-
-      dispatch(changeSupplier(supplier));
+      if (supplier) dispatch(initEditing(supplier));
     } catch (error) {
       console.log(`erro ao buscar fornecedor: ${error}`);
-      dispatch(changeSupplier());
+      dispatch(clearSupplierState());
       message.error('Ocorreu um erro, tente novamente');
     } finally {
       dispatch(stopLoading());
@@ -41,13 +46,14 @@ function createSupplier(supplier: SupplierType) {
   return async function (dispatch: DispatchType) {
     dispatch(startLoading());
     try {
-      supplierServices.createSupplier(supplier);
+      await supplierServices.createSupplier(supplier);
 
       await sleep(1500);
     } catch (error) {
       console.log(`erro ao buscar fornecedor: ${error}`);
       message.error('Ocorreu um erro, tente novamente');
     } finally {
+      dispatch(completeEditing());
       dispatch(stopLoading());
     }
   }
@@ -57,13 +63,14 @@ function updateSupplier(supplier: SupplierType) {
   return async function (dispatch: DispatchType) {
     dispatch(startLoading());
     try {
-      supplierServices.updateSupplier(supplier);
+      await supplierServices.updateSupplier(supplier);
 
       await sleep(1500);
     } catch (error) {
       console.log(`erro ao buscar fornecedor: ${error}`);
       message.error('Ocorreu um erro, tente novamente');
     } finally {
+      dispatch(completeEditing());
       dispatch(stopLoading());
     }
   }
@@ -75,12 +82,15 @@ function modifySupplier(supplier: SupplierEditingType) {
       dispatch(changeSupplier(supplier));
     } catch (error) {
       console.log(`erro ao modificar fornecedor: ${error}`);
-      dispatch(changeSupplier());
+      dispatch(clearSupplierState());
       message.error('Ocorreu um erro, tente novamente');
     }
   }
 }
 
+function clanForm() {
+  return (dispatch: DispatchType) => dispatch(clearSupplierState());
+}
 function startLoad() {
   return (dispatch: DispatchType) => dispatch(startLoading());
 }
@@ -88,7 +98,8 @@ function stopLoad() {
   return (dispatch: DispatchType) => dispatch(stopLoading());
 }
 
-export const homeActions = {
+export const supplierActions = {
+  clanForm,
   startLoad,
   stopLoad,
   modifySupplier,
@@ -97,4 +108,4 @@ export const homeActions = {
   updateSupplier,
 }
 
-export default homeSlice.reducer
+export default supplierSlice.reducer
