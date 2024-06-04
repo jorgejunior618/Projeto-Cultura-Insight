@@ -11,18 +11,37 @@ import Card from "@/components/card";
 import { DropdownOption, HomeContainer } from "./page.styled";
 import { homeActions } from "@/redux/home/homeSlice";
 import { CustomSpin } from "@/components/customSpin";
+import { supplierActions } from "@/redux/supplier/supplierSlice";
+import { SupplierType } from "@/redux/reduxTypes";
+import { useRouter } from "next/navigation";
+import { onlyNumbers } from "@/utils/functions";
 
 export default function Home() {
   const homeState = useAppSelector(state => state.homeState);
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const refreshSuppliers = useCallback(() => {
     dispatch(homeActions.searchSuppliers());
   }, [dispatch]);
+  const deleteSupplier = useCallback((supID: string) => {
+    dispatch(homeActions.removeSupplier(supID));
+  }, [dispatch]);
+  const goToSupplierForm = useCallback((supplier?: SupplierType) => {
+    console.log(supplier);
+    
+    if (supplier) {
+      dispatch(supplierActions.modifySupplier(supplier));
+      router.push(`/supplier/${onlyNumbers(supplier.cnpj)}`);
+    } else {
+      router.push('/supplier');
+    }
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(homeActions.searchSuppliers());
-  }, [dispatch])
+  }, [dispatch]);
+
   return (
     <HomeContainer>
     <h1 className={fontSizes.big}>Seus Fornecedores</h1>
@@ -30,7 +49,7 @@ export default function Home() {
       <p onClick={refreshSuppliers} title="Atualizar lista"><ReloadOutlined /></p>
     </div>
     <ul>
-      <CustomSpin spinning={homeState.loading}>
+      {homeState.loading ? <CustomSpin spinning fullscreen /> : null}
       {homeState.suppliers.map(supplier => (
       <Card key={supplier.cnpj}>
         <section>
@@ -48,11 +67,15 @@ export default function Home() {
           trigger={['click']}
           menu={{ items: [
           {
-            label: (<DropdownOption className="editOption">Editar <EditOutlined /></DropdownOption>),
+            label: (<DropdownOption className="editOption" onClick={() => goToSupplierForm(supplier)}>
+              Editar <EditOutlined />
+            </DropdownOption>),
             key: '0'
           },
           {
-            label: (<DropdownOption className="deleteOption">Excluir <DeleteOutlined /></DropdownOption>),
+            label: (<DropdownOption className="deleteOption" onClick={() => deleteSupplier(supplier.cnpj)}>
+              Excluir <DeleteOutlined />
+            </DropdownOption>),
             key: '1'
           }
         ]}}>
@@ -62,7 +85,6 @@ export default function Home() {
         </Dropdown>
       </Card>
       ))}
-      </CustomSpin>
     </ul>
     </HomeContainer>
   );
