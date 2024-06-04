@@ -5,7 +5,6 @@ import { DispatchType } from '../reduxTypes';
 import { message } from 'antd';
 import initialState from './initialState';
 
-import mockData from '@/mock.json';
 import supplierServices from '@/services/supplier.services';
 
 const homeSlice = createSlice({
@@ -24,7 +23,7 @@ function searchSuppliers() {
   return async function (dispatch: DispatchType) {
     dispatch(startLoading());
     try {
-      const suppliers = supplierServices.getSuppliers();
+      const suppliers = await supplierServices.getSuppliers();
 
       await sleep(1500);
 
@@ -44,7 +43,7 @@ function removeSupplier(supplierID: string) {
     dispatch(startLoading());
 
     try {
-      supplierServices.deleteSupplier(supplierID);
+      await supplierServices.deleteSupplier(supplierID);
       dispatch(deleteSupplier(supplierID));
       message.info(`Fornecedor [CNPJ: ${supplierID}] removido com sucesso`);
     } catch (error) {
