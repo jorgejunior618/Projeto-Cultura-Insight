@@ -49,9 +49,10 @@ function createSupplier(supplier: SupplierType) {
       await supplierServices.createSupplier(supplier);
 
       await sleep(1500);
+      message.success('Fornecedor adicionado com sucesso');
     } catch (error) {
-      console.log(`erro ao buscar fornecedor: ${error}`);
-      message.error('Ocorreu um erro, tente novamente');
+      console.log(`erro ao cadastrar fornecedor: ${error}`);
+      message.error('Não foi possível cadastrar o Fornecedor, tente novamente');
     } finally {
       dispatch(completeEditing());
       dispatch(stopLoading());
@@ -66,9 +67,10 @@ function updateSupplier(supplier: SupplierType) {
       await supplierServices.updateSupplier(supplier);
 
       await sleep(1500);
+      message.success('Fornecedor atualizado com sucesso');
     } catch (error) {
-      console.log(`erro ao buscar fornecedor: ${error}`);
-      message.error('Ocorreu um erro, tente novamente');
+      console.log(`erro ao atualizar fornecedor: ${error}`);
+      message.error('Não foi possível atualizar o Fornecedor, tente novamente');
     } finally {
       dispatch(completeEditing());
       dispatch(stopLoading());
