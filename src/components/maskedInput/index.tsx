@@ -65,14 +65,15 @@ export default function MasekdInput({mask, value: val, onChange, ...props}: Mask
     setTimeout(() => {
       if (selectionStart !== null) {
         let position = selectionStart;
-        if (value.length > currentVal.length) {
+        if (value.length >= currentVal.length) {
           position += maskChars[selectionStart-1] ? 1 : 0;
           setSelectionRange(position, position);
         } else {
-          position -= 
-          maskChars[selectionStart-1] ? 1 : 0;
+          position -= maskChars[selectionStart-1] ? 1 : 0;
           setSelectionRange(position,position);
         }
+        console.log({ selStrt: selectionStart, position, value, currentVal });
+        
       }
       setCurrentVal(value);
     }, 15);
