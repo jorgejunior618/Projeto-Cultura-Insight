@@ -21,7 +21,6 @@ export default function MasekdInput({mask, value: val, onChange, ...props}: Mask
       if (isAlphaNum(str)) alphaNumAux.push(str);
       else maskAux[index] = str;
     });
-    console.log({maskAux});
 
     return [alphaNumAux, maskAux];
   }, [mask]);
