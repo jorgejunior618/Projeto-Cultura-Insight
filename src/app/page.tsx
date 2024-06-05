@@ -29,8 +29,6 @@ export default function Home() {
     dispatch(homeActions.removeSupplier(supID));
   }, [dispatch]);
   const goToSupplierForm = useCallback((supplier?: SupplierType) => {
-    console.log(supplier);
-    
     if (supplier) {
       dispatch(supplierActions.modifySupplier(supplier));
       router.push(`/supplier/${onlyNumbers(supplier.cnpj)}`);
