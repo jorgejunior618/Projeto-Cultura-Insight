@@ -20,9 +20,11 @@ async function getSupplier(supplierID: string): Promise<SupplierType | undefined
 async function createSupplier(supplier: SupplierType): Promise<SupplierType[]> {
   const currentSuppliers = await getSuppliersFile();
   if (!currentSuppliers) {
-  setSuppliersFile([...mockData.suppliers, supplier]);
-  return [...mockData.suppliers, supplier];
+    if (mockData.suppliers.find(sup => sup.cnpj === supplier.cnpj)) throw new Error("Este CNPJ ja está cadastrado em um fornecedor");
+    setSuppliersFile([...mockData.suppliers, supplier]);
+    return [...mockData.suppliers, supplier];
   }
+  if (currentSuppliers.find(sup => sup.cnpj === supplier.cnpj)) throw new Error("Este CNPJ ja está cadastrado em um fornecedor");
   
   const suppliers = [...currentSuppliers, supplier];
   setSuppliersFile(suppliers);
@@ -47,7 +49,7 @@ async function updateSupplier(supplier: SupplierType): Promise<SupplierType[]> {
 }
 
 async function deleteSupplier(supplierID: string): Promise<SupplierType[]> {
-  const currentSuppliers = localStorage.getItem("dev-insightlab-suppliers")
+  const currentSuppliers = await getSuppliersFile();
   if (!currentSuppliers) {
     const suppliersArray: SupplierType[] = mockData.suppliers;
     const suppliers = suppliersArray.filter(sup => sup.cnpj !== supplierID);
@@ -55,7 +57,7 @@ async function deleteSupplier(supplierID: string): Promise<SupplierType[]> {
     return suppliers;
   }
 
-  const suppliersArray: SupplierType[] = JSON.parse(currentSuppliers);
+  const suppliersArray: SupplierType[] = currentSuppliers;
   const suppliers = suppliersArray.filter(sup => sup.cnpj !== supplierID);
   setSuppliersFile(suppliers);
   return suppliers;
