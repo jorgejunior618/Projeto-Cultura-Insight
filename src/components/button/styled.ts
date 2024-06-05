@@ -16,7 +16,7 @@ export const ButtonWrapper = styled.div`
   }
   .floatingButton {
     position: absolute;
-    bottom: 25px;
-    right: 5vw;
+    bottom: 10vh;
+    right: 10vw;
   }
 `;
