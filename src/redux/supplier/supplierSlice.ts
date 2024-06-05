@@ -42,6 +42,21 @@ function searchSupplier(supplierID: string) {
   }
 }
 
+function initEditingSupplier(supplier: SupplierType) {
+  return async function (dispatch: DispatchType) {
+    dispatch(startLoading());
+    try {
+      dispatch(initEditing(supplier));
+    } catch (error) {
+      console.log(`erro ao buscar fornecedor: ${error}`);
+      dispatch(clearSupplierState());
+      message.error('Ocorreu um erro, tente novamente');
+    } finally {
+      dispatch(stopLoading());
+    }
+  }
+}
+
 function createSupplier(supplier: SupplierType) {
   return async function (dispatch: DispatchType) {
     dispatch(startLoading());
@@ -49,12 +64,16 @@ function createSupplier(supplier: SupplierType) {
       await supplierServices.createSupplier(supplier);
 
       await sleep(1500);
+      dispatch(completeEditing());
       message.success('Fornecedor adicionado com sucesso');
     } catch (error) {
       console.log(`erro ao cadastrar fornecedor: ${error}`);
-      message.error('Não foi possível cadastrar o Fornecedor, tente novamente');
+      if (Object.getOwnPropertyNames(error).includes('message')) {
+        message.error(`${(error as any).message}`);
+      } else {
+        message.error('Não foi possível cadastrar o Fornecedor, tente novamente');
+      }
     } finally {
-      dispatch(completeEditing());
       dispatch(stopLoading());
     }
   }
@@ -67,12 +86,16 @@ function updateSupplier(supplier: SupplierType) {
       await supplierServices.updateSupplier(supplier);
 
       await sleep(1500);
+      dispatch(completeEditing());
       message.success('Fornecedor atualizado com sucesso');
     } catch (error) {
       console.log(`erro ao atualizar fornecedor: ${error}`);
-      message.error('Não foi possível atualizar o Fornecedor, tente novamente');
+      if (Object.getOwnPropertyNames(error).includes('message')) {
+        message.error(error as string);
+      } else {
+        message.error('Não foi possível atualizar o Fornecedor, tente novamente');
+      }
     } finally {
-      dispatch(completeEditing());
       dispatch(stopLoading());
     }
   }
@@ -104,6 +127,7 @@ export const supplierActions = {
   clanForm,
   startLoad,
   stopLoad,
+  initEditingSupplier,
   modifySupplier,
   searchSupplier,
   createSupplier,
