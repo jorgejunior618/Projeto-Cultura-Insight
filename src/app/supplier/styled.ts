@@ -2,33 +2,46 @@ import { colors } from "@/constants";
 import styled from "styled-components";
 
 export const FormWrapper = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
   /* padding: 20px 0%; */
 
   section.formSection {
     width: 100%;
     height: fit-content;
-    border: 1px solid white;
-    border-top: 1px solid #FFFFFF30;
-    border-bottom: 1px solid #FFFFFF30;
-    padding: 20px 10px;
-
+    /* border: 1px solid white; */
+    /* border-top: 1px solid #FFFFFF30; */
+    /* border-bottom: 1px solid #FFFFFF30; */
+    
+    .ant-spin-container {
+      padding: 20px 10px;
+    }
     &.first {
       margin-top: 25px;
-      border-top: 1px solid white;
+      /* border-top: 1px solid white; */
+      /* border-radius: 10px 10px 0 0; */
       border-bottom: 1px solid #FFFFFF30;
-      border-radius: 10px 10px 0 0;
     }
-    &:last-child {
-      border-bottom: 1px solid white;
+    &.last {
+      /* border-bottom: 1px solid white; */
+      /* border-radius: 0 0 10px 10px; */
       border-top: 1px solid #FFFFFF30;
       margin-top: 0;
-      border-radius: 0 0 10px 10px;
     }
     
     h2 {
       margin-bottom: 15px;
       margin-left: 5px;
     }
+  }
+  .btnGroup {
+    display: grid;
+    grid-template-columns: fit-content(100%) fit-content(100%);
+    column-gap: 15px;
+    align-items: center;
+    margin-top: 15px;
+    margin-left: auto;
   }
 `;
 

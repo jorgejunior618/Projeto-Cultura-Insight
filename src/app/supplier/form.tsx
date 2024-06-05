@@ -1,37 +1,41 @@
 "use client"
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { ChangeEvent, Suspense, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { supplierActions } from "@/redux/supplier/supplierSlice";
 import { SupplierEditingType } from "@/redux/reduxTypes";
-import { Col, Input, Row, Spin, message } from "antd";
+import { Button, Col, Input, Row, Select, Spin, message } from "antd";
 import { FormWrapper, InputWrapper } from "./styled";
 import MasekdInput from "@/components/maskedInput";
 import { fontSizes, fontWeights } from "@/constants";
 import CustomButton from "@/components/button";
+
+import countries from "@/countries.json"
+import { useRouter } from "next/navigation";
+
+const filterOption = (input: string, option?: { label: string; value: string }) =>
+  (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
 
 type FormParams = {
   supplierID: string;
 }
 export default function SupplierForm({supplierID}: FormParams) {
   const supplierState = useAppSelector(state => state.supplierState);
+  const router = useRouter();
   const [ postCode, setPostCode ] = useState("");
   const [ loadingPostCode, setLoadingPostCode ] = useState(false);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (supplierState.supplier.cnpj.length === 0 && supplierID.length !== 0) {
-      dispatch(supplierActions.searchSupplier(supplierID))
-    }
-  }, [dispatch]);
+  const finishForm = useCallback(() => {
+    dispatch(supplierActions.clanForm());
+    router.push("/");
+  }, [router]);
 
   const getPostCodeData = useCallback(async (
     pc: string,
     cbfn?: (a:{
-      line_one: string;
-      line_two: string;
-      state: string;
-      country: string;
+      line_one: string; line_two: string;
+      state: string; country: string;
     }) => any
   ) => {
     setLoadingPostCode(true);
@@ -39,12 +43,7 @@ export default function SupplierForm({supplierID}: FormParams) {
     try {
       const response = await fetch('https://brasilapi.com.br/api/cep/v1/' + pc);
       const pcAddres: {
-        cep: string;
-        state: string;
-        city: string;
-        neighborhood: string;
-        street: string;
-        service: string;
+        cep: string; service: string; state: string; street: string; neighborhood: string; city: string;
       } = await response.json();
 
       const add = {
@@ -63,7 +62,7 @@ export default function SupplierForm({supplierID}: FormParams) {
       setLoadingPostCode(false);
     }
   }, [supplierState.supplier, setPostCode]);
-  
+
   const handleChangeInput = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
@@ -77,7 +76,7 @@ export default function SupplierForm({supplierID}: FormParams) {
   const handleChangeAddresInput = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
-    if (name === "line_one" || name === "line_two" || name === "state"|| name === "country") {
+    if (name === "line_one" || name === "line_two" || name === "state" || name === "country" || name === "number") {
       const change: SupplierEditingType = {};
       change.address = {};
       
@@ -93,7 +92,37 @@ export default function SupplierForm({supplierID}: FormParams) {
         );
       }
     }
-  }, [dispatch, supplierState.supplier]);
+  }, [dispatch, supplierState.supplier, setPostCode,getPostCodeData]);
+
+  const validateForm = useCallback(() => {
+    const { editing, supplier: form } = supplierState;
+    if (form.cnpj) {
+      if (form.cnpj.length !== 18) return message.warning("Favor informar o CNPJ corretamente");
+    } else return message.warning("Por favor preencha o CNPJ");
+    if (form.name.length < 5) return message.warning("Favor informar um nome válido");
+    if (form.alternativeName.length < 5) return message.warning("Favor informar um nome fantasia válido");
+    if (form.address.line_one.length === 0) return message.warning("Favor informar um Logradouro");
+    if (form.address.country.length === 0) return message.warning("Favor informar um País");
+    if (form.address.state.length === 0) return message.warning("Favor informar um Estado");
+
+    if (editing) {
+      dispatch(supplierActions.updateSupplier(form));
+    } else {
+      dispatch(supplierActions.createSupplier(form));
+    }
+  }, [supplierState.supplier, supplierState.editing]);
+
+  useEffect(() => {
+    if (supplierState.supplier.cnpj.length === 0 && supplierID.length !== 0) {
+      dispatch(supplierActions.searchSupplier(supplierID));
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (supplierState.completed) {
+      finishForm();
+    }
+  }, [dispatch, supplierState.completed, finishForm]);
 
   return <FormWrapper>
     <h1
@@ -143,7 +172,7 @@ export default function SupplierForm({supplierID}: FormParams) {
             <Input
               value={supplierState.supplier.alternativeName}
               name="alternativeName"
-              onChange={(e) => console.log(e.target.value)}
+              onChange={handleChangeInput}
               placeholder="Nome Fantasia do fornecedor"
             />
           </InputWrapper>
@@ -152,7 +181,7 @@ export default function SupplierForm({supplierID}: FormParams) {
       </Spin>
     </section>
 
-    <section className="formSection">
+    <section className="formSection last">
       <Spin spinning={supplierState.loading || loadingPostCode}>
       <h2
         className={fontSizes.big + ' ' + fontWeights.bold}
@@ -185,12 +214,16 @@ export default function SupplierForm({supplierID}: FormParams) {
         <Col span={6}>
           <InputWrapper>
             <label htmlFor="country">País</label>
-            <Input
+            <Select
               value={supplierState.supplier.address.country ?? ""}
-              name="country"
-              onChange={handleChangeInput}
-              placeholder="Proximidades, bloco/etapa"
-            />
+              onChange={(value) => dispatch(supplierActions.modifySupplier({address: {country: value}}))}
+              options={[
+                { value: "", label: "Selecionar País" },
+                ...countries.map(country => ({ value: country.name, label: country.name }))
+              ]}
+              showSearch
+              filterOption={filterOption}
+            ></Select>
           </InputWrapper>
         </Col>
       </Row>
@@ -235,12 +268,18 @@ export default function SupplierForm({supplierID}: FormParams) {
       </Row>
       </Spin>
     </section>
-    <CustomButton
-    className={fontSizes.regular}
-    id="home"
-    onClick={() => null}
-  >
-    {supplierState.editing ? "Atualzar" : "Adicionar"}
-  </CustomButton>
+
+    <div className="btnGroup">
+      <CustomButton cancel onClick={finishForm}>
+        <span className={fontSizes.regular + ' ' + fontWeights.bold}>
+          Cancelar
+        </span>
+      </CustomButton>
+      <CustomButton onClick={() => validateForm()}>
+        <span className={fontSizes.regular + ' ' + fontWeights.bold}>
+          {supplierState.editing ? "Atualzar" : "Adicionar"}
+        </span>
+      </CustomButton>
+    </div>
   </FormWrapper>
 }
