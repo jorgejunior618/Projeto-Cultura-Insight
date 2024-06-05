@@ -8,12 +8,22 @@ export const fillSupplier = (form: SupplierEditingType, supplierState: SupplierT
     country: "",
     state: "",
   };
-  if (form.address) {
-    address.line_one = form.address.line_one ?? supplierState.address.line_one;
-    address.line_two = form.address.line_two ?? supplierState.address.line_two ?? "";
-    address.number = form.address.number ?? supplierState.address.number;
-    address.country = form.address.country ?? supplierState.address.country;
-    address.state = form.address.state ?? supplierState.address.state;
+  if (form.address || supplierState.address) {
+    address.line_one = form.address ?
+      form.address.line_one ?? supplierState.address.line_one :
+      supplierState.address.line_one;
+    address.line_two = form.address ?
+      form.address.line_two ?? supplierState.address.line_two ?? "" :
+      supplierState.address.line_two ?? "";
+    address.number = form.address ?
+      form.address.number ?? supplierState.address.number :
+      supplierState.address.number;
+    address.country = form.address ?
+      form.address.country ?? supplierState.address.country :
+      supplierState.address.country;
+    address.state = form.address ?
+      form.address.state ?? supplierState.address.state :
+      supplierState.address.state;
   }
   return {
     ...supplierState,
