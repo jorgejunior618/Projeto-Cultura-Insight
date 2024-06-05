@@ -30,7 +30,7 @@ export default function Home() {
   }, [dispatch]);
   const goToSupplierForm = useCallback((supplier?: SupplierType) => {
     if (supplier) {
-      dispatch(supplierActions.modifySupplier(supplier));
+      dispatch(supplierActions.initEditingSupplier(supplier));
       router.push(`/supplier/${onlyNumbers(supplier.cnpj)}`);
     } else {
       router.push('/supplier');
@@ -89,7 +89,8 @@ export default function Home() {
     </ul>
 
   <CustomButton
-    className={fontSizes.regular + ' floatingButton'}
+    className={fontSizes.regular}
+    floating
     id="home"
     onClick={() => goToSupplierForm()}
   >
