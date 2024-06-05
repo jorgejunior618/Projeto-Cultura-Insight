@@ -5,7 +5,7 @@ import { Dropdown } from "antd";
 import { DeleteOutlined, EditOutlined, MoreOutlined, ReloadOutlined } from "@ant-design/icons";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { fontSizes, fontWeights } from "@/constants";
+import { containers, fontSizes, fontWeights } from "@/constants";
 import Card from "@/components/card";
 
 import { DropdownOption, HomeContainer } from "./page.styled";
@@ -15,6 +15,7 @@ import { supplierActions } from "@/redux/supplier/supplierSlice";
 import { SupplierType } from "@/redux/reduxTypes";
 import { useRouter } from "next/navigation";
 import { onlyNumbers } from "@/utils/functions";
+import CustomButton from "@/components/button";
 
 export default function Home() {
   const homeState = useAppSelector(state => state.homeState);
@@ -43,7 +44,8 @@ export default function Home() {
   }, [dispatch]);
 
   return (
-    <HomeContainer>
+  <>
+  <HomeContainer>
     <h1 className={fontSizes.big}>Seus Fornecedores</h1>
     <div id="reload">
       <p onClick={refreshSuppliers} title="Atualizar lista"><ReloadOutlined /></p>
@@ -59,6 +61,7 @@ export default function Home() {
           </h2>
           <p>CNPJ: {supplier.cnpj}</p>
           <p>{supplier.address.line_one}</p>
+          <p>{supplier.address.number ? `Nº ${supplier.address.number}` : "S.N."}</p>
           <p>{supplier.address.line_two || null}</p>
           <p>{supplier.address.state} - {supplier.address.country}</p>
         </section>
@@ -86,6 +89,16 @@ export default function Home() {
       </Card>
       ))}
     </ul>
-    </HomeContainer>
+
+  <CustomButton
+    className={fontSizes.regular + ' floatingButton'}
+    id="home"
+    onClick={() => goToSupplierForm()}
+  >
+    <span className={fontWeights.bold + ' ' + fontSizes.medium}>+</span>
+    <span className={fontWeights.bold + ' ' + fontSizes.regular}>&nbsp;Fornecedor</span>
+  </CustomButton>
+  </HomeContainer>
+  </>
   );
 }

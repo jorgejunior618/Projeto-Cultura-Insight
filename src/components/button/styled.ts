@@ -10,7 +10,8 @@ export const ButtonWrapper = styled.div`
     height: auto;
 
     &:hover {
-      background-color: ${colors.secBackground};
+      background-color: ${colors.secBackground} !important;
+      color: ${colors.primary} !important;
     }
   }
   .floatingButton {

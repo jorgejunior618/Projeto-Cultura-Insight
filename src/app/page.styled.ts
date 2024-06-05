@@ -61,6 +61,23 @@ export const HomeContainer = styled.section`
       transform: translateY(0);
     }
   }
+  button#home {
+    display: grid;
+    grid-template-columns: fit-content(100%) 0fr;
+    gap: 0;
+    transition: grid-template-columns .3s;
+    align-items: center;
+    
+    span {
+      overflow-x: hidden;
+    }
+    &:hover {
+      background-color: ${colors.primary} !important;
+      color: white !important;
+      grid-template-columns: fit-content(100%) 1fr;
+      gap: 5px;
+    }
+  }
 `;
 
 export const DropdownOption = styled.div`
