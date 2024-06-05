@@ -4,12 +4,14 @@ export const fillSupplier = (form: SupplierEditingType, supplierState: SupplierT
   const address = {
     line_one: "",
     line_two: "",
+    number: "",
     country: "",
     state: "",
   };
   if (form.address) {
     address.line_one = form.address.line_one ?? supplierState.address.line_one;
     address.line_two = form.address.line_two ?? supplierState.address.line_two ?? "";
+    address.number = form.address.number ?? supplierState.address.number;
     address.country = form.address.country ?? supplierState.address.country;
     address.state = form.address.state ?? supplierState.address.state;
   }
@@ -31,6 +33,7 @@ const initialState: SupplierStateType = {
     address: {
       line_one: "",
       line_two: "",
+      number: "",
       country: "",
       state: "",
     },

@@ -16,6 +16,7 @@ export type SupplierType = {
   address: {
     line_one: string;
     line_two: string | null;
+    number: string;
     state: string;
     country: string;
   };
@@ -27,6 +28,7 @@ export type SupplierEditingType = {
   address?: {
     line_one?: string;
     line_two?: string | null;
+    number?: string;
     state?: string;
     country?: string;
   };
