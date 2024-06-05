@@ -72,8 +72,6 @@ export default function MasekdInput({mask, value: val, onChange, ...props}: Mask
           position -= maskChars[selectionStart-1] ? 1 : 0;
           setSelectionRange(position,position);
         }
-        console.log({ selStrt: selectionStart, position, value, currentVal });
-        
       }
       setCurrentVal(value);
     }, 15);
