@@ -121,7 +121,7 @@ button.ant-btn.floatingButton {
 
   position: absolute;
   bottom: 5vh;
-  right: calc(50vw - 610px);
+  right: calc(50vw - 660px);
 }
 button.ant-btn.secondary {
   color: #0A829B !important;
@@ -144,7 +144,7 @@ button.ant-btn.cancel:hover {
   background-color: #BF1919 !important;
   color: white !important;
 }
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1350px) {
   button.ant-btn.floatingButton {
     padding: 0 20px;
     right: 50px;

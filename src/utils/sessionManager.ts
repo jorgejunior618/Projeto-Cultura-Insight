@@ -26,6 +26,7 @@ export async function updateSession(request: NextRequest) {
   if (!session) return;
 
   const parsed = await decrypt(session);
+  
   parsed.expires = setExpirationTime(1);
   const res = NextResponse.next();
   res.cookies.set({

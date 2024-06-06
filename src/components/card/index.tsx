@@ -33,7 +33,7 @@ export default function Card({
         <Dropdown
           trigger={['click']}
           menu={options}
-          placement="topCenter"
+          placement="top"
           overlayStyle={{ minWidth: 'fit-content' }}
         >
           <section className="options"><MoreOutlined /></section>
