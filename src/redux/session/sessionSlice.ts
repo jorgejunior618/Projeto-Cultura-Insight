@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import reducers from './reducers';
-import { DispatchType } from '../reduxTypes';
+import { DispatchType, UserSessionType } from '../reduxTypes';
 import { message } from 'antd';
 import initialState from './initialState';
 
@@ -54,9 +54,16 @@ function logout() {
   }
 }
 
+function updateLogin(user: UserSessionType) {
+  return async function (dispatch: DispatchType) {
+    dispatch(setLogin(user));
+  }
+}
+
 export const sessionActions = {
   login,
   logout,
+  updateLogin,
 }
 
 export default sessionSlice.reducer
