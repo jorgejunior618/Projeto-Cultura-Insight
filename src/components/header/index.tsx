@@ -19,7 +19,7 @@ export default function Header({ user }: {user?: UserSessionType | null}) {
     if (user && !sessionState.user) {
       dispatch(sessionActions.updateLogin(user))
     }
-  }, [user]);
+  }, [dispatch, sessionState.user, user]);
 
   const handleLogout = async () => {
     await dispatch(sessionActions.logout());

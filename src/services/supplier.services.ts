@@ -63,10 +63,12 @@ async function deleteSupplier(supplierID: string): Promise<SupplierType[]> {
   return suppliers;
 }
 
-export default {
+const supplierServices = {
   getSuppliers,
   getSupplier,
   createSupplier,
   updateSupplier,
   deleteSupplier,
 };
+
+export default supplierServices;

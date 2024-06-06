@@ -30,7 +30,7 @@ export default function SupplierForm({supplierID}: FormParams) {
   const finishForm = useCallback(() => {
     dispatch(supplierActions.clanForm());
     router.push("/");
-  }, [router]);
+  }, [router, dispatch]);
 
   const getPostCodeData = useCallback(async (
     pc: string,
@@ -62,7 +62,7 @@ export default function SupplierForm({supplierID}: FormParams) {
     } finally {
       setLoadingPostCode(false);
     }
-  }, [supplierState.supplier, setPostCode]);
+  }, [setLoadingPostCode]);
 
   const handleChangeInput = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -111,13 +111,13 @@ export default function SupplierForm({supplierID}: FormParams) {
     } else {
       dispatch(supplierActions.createSupplier(form));
     }
-  }, [supplierState.supplier, supplierState.editing]);
+  }, [supplierState, dispatch]);
 
   useEffect(() => {
     if (supplierState.supplier.cnpj.length === 0 && supplierID.length !== 0) {
       dispatch(supplierActions.searchSupplier(supplierID));
     }
-  }, [dispatch]);
+  }, [dispatch, supplierID, supplierState.supplier.cnpj]);
 
   useEffect(() => {
     if (supplierState.completed) {

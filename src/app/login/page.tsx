@@ -22,7 +22,7 @@ export default function Login() {
     if (loginText.length === 0) return message.warning("Informe um nome de usuário");
     if (passwordText.length === 0) return message.warning("Informe uma senha");
     dispatch(sessionActions.login(loginText, passwordText));
-  }, [loginText, passwordText]);
+  }, [loginText, passwordText, dispatch]);
 
   const keyHandler = useCallback((event: KeyboardEvent<HTMLInputElement>) => {
     const { key } = event;
@@ -31,7 +31,7 @@ export default function Login() {
 
   useEffect(() => {
     if (sessionState.logged) router.push('/');
-  }, [sessionState]);
+  }, [sessionState, router]);
 
   return (
     <LoginWrapper>

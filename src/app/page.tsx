@@ -36,7 +36,7 @@ export default function Home() {
     } else {
       router.push('/supplier');
     }
-  }, [dispatch]);
+  }, [dispatch, router]);
 
   useEffect(() => {
     dispatch(homeActions.searchSuppliers());
