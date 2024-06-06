@@ -67,6 +67,7 @@ export const HomeContainer = styled.section`
     gap: 0;
     transition: grid-template-columns .3s;
     align-items: center;
+    border: none !important;
     
     span {
       overflow-x: hidden;
