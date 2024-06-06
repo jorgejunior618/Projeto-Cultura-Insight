@@ -3,6 +3,7 @@ export type StoreAction = {
   payload?: any,
 }
 export type StoreState = {
+  sessionState: AppSessionType,
   homeState: HomeStateType,
   supplierState: SupplierStateType,
 }
@@ -21,6 +22,10 @@ export type SupplierType = {
     country: string;
   };
 };
+export type UserSessionType = {
+  username: string;
+  addSupplier: boolean;
+}
 export type SupplierEditingType = {
   name?: string;
   alternativeName?: string;
@@ -43,4 +48,14 @@ export type SupplierStateType = {
   editing: boolean;
   completed: boolean;
   supplier: SupplierType;
+};
+
+export type AppSessionType = {
+  logged: boolean;
+  user: UserSessionType | null;
+};
+export type SessionStateType = {
+  loading: boolean;
+  logged: boolean;
+  user: UserSessionType | null;
 };
