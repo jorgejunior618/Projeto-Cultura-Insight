@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { supplierActions } from "@/redux/supplier/supplierSlice";
 import { SupplierEditingType } from "@/redux/reduxTypes";
-import { Button, Col, Input, Row, Select, Spin, message } from "antd";
+import { Col, Input, Row, Select, message } from "antd";
 import { FormWrapper, InputWrapper } from "./styled";
 import MasekdInput from "@/components/maskedInput";
 import { fontSizes, fontWeights } from "@/constants";
@@ -12,6 +12,7 @@ import CustomButton from "@/components/button";
 
 import countries from "@/countries.json"
 import { useRouter } from "next/navigation";
+import { CustomSpin } from "@/components/customSpin";
 
 const filterOption = (input: string, option?: { label: string; value: string }) =>
   (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
@@ -130,7 +131,7 @@ export default function SupplierForm({supplierID}: FormParams) {
     >{supplierState.editing ? "Atualização" : "Cadastro"} de fornecedor</h1>
 
     <section className="formSection first">
-      <Spin spinning={supplierState.loading}>
+      <CustomSpin spinning={supplierState.loading}>
       <h2
         className={fontSizes.big + ' ' + fontWeights.bold}
       >Dados básicos</h2>
@@ -178,11 +179,11 @@ export default function SupplierForm({supplierID}: FormParams) {
           </InputWrapper>
         </Col>
       </Row>
-      </Spin>
+      </CustomSpin>
     </section>
 
     <section className="formSection last">
-      <Spin spinning={supplierState.loading || loadingPostCode}>
+      <CustomSpin spinning={supplierState.loading || loadingPostCode}>
       <h2
         className={fontSizes.big + ' ' + fontWeights.bold}
       >Endereço</h2>
@@ -266,7 +267,7 @@ export default function SupplierForm({supplierID}: FormParams) {
           </InputWrapper>
         </Col>
       </Row>
-      </Spin>
+      </CustomSpin>
     </section>
 
     <div className="btnGroup">
