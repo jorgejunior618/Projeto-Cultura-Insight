@@ -25,8 +25,6 @@ export default function Login() {
   }, [loginText, passwordText]);
 
   useEffect(() => {
-    console.log(sessionState);
-    
     if (sessionState.logged) router.push('/');
   }, [sessionState])
 
