@@ -18,6 +18,7 @@ import { onlyNumbers } from "@/utils/functions";
 import CustomButton from "@/components/button";
 
 export default function Home() {
+  const sessionState = useAppSelector(state => state.sessionState);
   const homeState = useAppSelector(state => state.homeState);
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -88,15 +89,15 @@ export default function Home() {
       ))}
     </ul>
 
-  <CustomButton
-    className={fontSizes.regular}
-    floating
-    id="home"
-    onClick={() => goToSupplierForm()}
-  >
-    <span className={fontWeights.bold + ' ' + fontSizes.medium}>+</span>
-    <span className={fontWeights.bold + ' ' + fontSizes.regular}>&nbsp;Fornecedor</span>
-  </CustomButton>
+  {sessionState.user && sessionState.user.addSupplier ? <CustomButton
+      className={fontSizes.regular}
+      floating
+      id="home"
+      onClick={() => goToSupplierForm()}
+    >
+      <span className={fontWeights.bold + ' ' + fontSizes.medium}>+</span>
+      <span className={fontWeights.bold + ' ' + fontSizes.regular}>&nbsp;Fornecedor</span>
+    </CustomButton> : null}
   </HomeContainer>
   </>
   );
