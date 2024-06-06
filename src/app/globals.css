@@ -103,7 +103,50 @@ a {
 .weigth-xtrabold {
   font-weight: 800;
 }
+button.ant-btn {
+  padding: 8px 15px;
+  height: auto;
 
+  color: white !important;
+  background-color: #0A829B !important;
+  border: 2px solid white !important;
+    
+}
+button.ant-btn:hover {
+  color: #0A829B !important;
+  background-color: white !important;
+  border: 2px solid #0A829B !important;
+}
+/* button.ant-btn:hover {
+    background-color: #060A20 !important;
+    color: #0A829B !important;
+  } */
+button.ant-btn.floatingButton {
+  position: absolute;
+  bottom: 10vh;
+  right: 10vw;
+}
+button.ant-btn.secondary {
+  color: #0A829B !important;
+  background-color: white !important;
+  border: 2px solid #0A829B !important;
+}
+button.ant-btn.secondary:hover {
+  border-color: white !important;
+  background-color: #0A829B !important;
+  color: white !important;
+}
+button.ant-btn.cancel {
+  color: #BF1919 !important;
+  background-color: white !important;
+  border: 2px solid #BF1919 !important;
+}
+  
+button.ant-btn.cancel:hover {
+  border-color: white !important;
+  background-color: #BF1919 !important;
+  color: white !important;
+}
 @media only screen and (max-width: 1150px) {
   .viewContainer .mainContainer {
     width: calc(100% - 50px);

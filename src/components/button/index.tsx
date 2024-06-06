@@ -1,5 +1,4 @@
 import { Button, ButtonProps } from "antd";
-import { ButtonWrapper } from "./styled";
 
 type CustomButtonProps = {
   floating?: boolean;
@@ -16,6 +15,6 @@ export default function CustomButton({floating, secondary, cancel, className, ..
     return classes.join(' ');
   }
   return (
-    <ButtonWrapper><Button className={getBtnClassName()} {...props}>{props.children}</Button></ButtonWrapper>
+    <Button className={getBtnClassName()} {...props}>{props.children}</Button>
   );
 }
