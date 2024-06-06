@@ -1,31 +1,25 @@
-import { NextRequest } from "next/server";
-import { updateSession } from "@/utils/sessionManager";
+import { NextRequest, NextResponse } from "next/server";
+import { getSession, updateSession } from "@/utils/sessionManager";
+import { redirect } from "next/navigation";
 
 export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const currSession = await getSession();
+  
+  if (!pathname.startsWith('/login')) { 
+    if (!currSession || !(currSession.session.logged)) return NextResponse.redirect(new URL('/login', request.url));
+
+    if (pathname.startsWith('/supplier')) {
+      if (!(currSession.session.user!.addSupplier)) return NextResponse.redirect(new URL('/', request.url));
+    }
+  } else {
+    if (currSession && currSession.session.logged) return NextResponse.redirect(new URL('/', request.url));
+  }
   return await updateSession(request);
 }
+
 export const config = {
   matcher: [
-    {
-      source: '/((?!api|_next/static|_next/image|favicon.ico).*)',
-      missing: [
-        { type: 'header', key: 'next-router-prefetch' },
-        { type: 'header', key: 'purpose', value: 'prefetch' },
-      ],
-    },
- 
-    {
-      source: '/((?!api|_next/static|_next/image|favicon.ico).*)',
-      has: [
-        { type: 'header', key: 'next-router-prefetch' },
-        { type: 'header', key: 'purpose', value: 'prefetch' },
-      ],
-    },
- 
-    {
-      source: '/((?!api|_next/static|_next/image|favicon.ico).*)',
-      has: [{ type: 'header', key: 'x-present' }],
-      missing: [{ type: 'header', key: 'x-missing', value: 'prefetch' }],
-    },
-  ]
-};
+    '/((?!api|_next/static|_next/image|favicon.ico|images).*)',
+  ],
+}
