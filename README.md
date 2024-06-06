@@ -45,7 +45,7 @@
 
 ### Login
 
-<div style="display: flex;">
+<div style="display: flex;justify-content: space-between;">
   <img src="demo/login.png" style="margin: 0 auto;" alt="Tela de login" title="Tela de login" height=300/>
   <img src="demo/login-mobile.png" style="margin: 0 auto;" alt="Tela de login" title="Tela de login" height=300/>
 </div>
@@ -65,14 +65,14 @@
 
 ### Visualiação dos dados cadastrados
 
-<div style="display: flex;">
+<div style="display: flex;justify-content: space-between;">
   <img src="demo/home.png" style="margin: 0 auto;" alt="Tela de listagem de fornecedores" title="Tela de listagem de fornecedores" height=300/>
   <img src="demo/home-mobile.png" style="margin: 0 auto;" alt="Tela de listagem de fornecedores" title="Tela de listagem de fornecedores" height=300/>
 </div>
 
 ### Cadastro e edição dos Fornecedores
 
-<div style="display: flex;">
+<div style="display: flex;justify-content: space-between;">
   <img src="demo/cadastro.png" style="margin: 0 auto;" alt="Tela de cadastro e edição de fornecedor" title="Tela de cadastro e edição de fornecedor" height=300/>
   <img src="demo/cadastro-mobile.png" style="margin: 0 auto;" alt="Tela de cadastro e edição de fornecedor" title="Tela de cadastro e edição de fornecedor" height=300/>
 </div>
