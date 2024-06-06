@@ -52,22 +52,9 @@ export default function Home() {
     <ul>
       {homeState.loading ? <CustomSpin spinning fullscreen /> : null}
       {homeState.suppliers.map(supplier => (
-      <Card key={supplier.cnpj}>
-        <section>
-          <h2 className={fontSizes.medium + ' ' + fontWeights.bold}>
-            {supplier.name + ' '}
-            <span className={fontSizes.regular + ' ' + fontWeights.regular}>(nome fantasia: {supplier.alternativeName})</span>
-          </h2>
-          <p>CNPJ: {supplier.cnpj}</p>
-          <p>{supplier.address.line_one}</p>
-          <p>{supplier.address.number ? `Nº ${supplier.address.number}` : "S.N."}</p>
-          <p>{supplier.address.line_two || null}</p>
-          <p>{supplier.address.state} - {supplier.address.country}</p>
-        </section>
-
-        <Dropdown
-          trigger={['click']}
-          menu={{ items: [
+      <Card
+        key={supplier.cnpj}
+        options={{ items: [
           {
             label: (<DropdownOption className="editOption" onClick={() => goToSupplierForm(supplier)}>
               Editar <EditOutlined />
@@ -80,11 +67,19 @@ export default function Home() {
             </DropdownOption>),
             key: '1'
           }
-        ]}}>
-          <section className="options">
-          <MoreOutlined />
-          </section>
-        </Dropdown>
+        ]}}
+      >
+        <section>
+          <h2 className={fontSizes.medium + ' ' + fontWeights.bold}>
+            {supplier.name + ' '}
+            <span className={fontSizes.regular + ' ' + fontWeights.regular}>(nome fantasia: {supplier.alternativeName})</span>
+          </h2>
+          <p>CNPJ: {supplier.cnpj}</p>
+          <p>{supplier.address.line_one}</p>
+          <p>{supplier.address.number ? `Nº ${supplier.address.number}` : "S.N."}</p>
+          <p>{supplier.address.line_two || null}</p>
+          <p>{supplier.address.state} - {supplier.address.country}</p>
+        </section>
       </Card>
       ))}
     </ul>
@@ -95,7 +90,7 @@ export default function Home() {
       id="home"
       onClick={() => goToSupplierForm()}
     >
-      <span className={fontWeights.bold + ' ' + fontSizes.medium}>+</span>
+      <span className={fontWeights.bold + ' ' + fontSizes.xtraBig}>+</span>
       <span className={fontWeights.bold + ' ' + fontSizes.regular}>&nbsp;Fornecedor</span>
     </CustomButton> : null}
   </HomeContainer>
