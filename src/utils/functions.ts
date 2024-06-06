@@ -1,3 +1,6 @@
+import { SignJWT, jwtVerify } from "jose";
+import { key } from "./consts";
+
 export const onlyNumbers = (str: string) => str.replace(/\D/g, "");
 
 export const numbersToCNPJ = (str: string) => {
@@ -10,3 +13,20 @@ export const numbersToCNPJ = (str: string) => {
   const cnpj = `${cnpj1}.${cnpj2}.${cnpj3}/${cnpj4}-${cnpj5}`;
   return cnpj;
 };
+
+export const setExpirationTime = (mins: number) => new Date(Date.now() + mins * 60 * 1000);
+
+export async function encrypt(payload: any) {
+  return await new SignJWT(payload)
+    .setProtectedHeader({ alg: "HS256" })
+    .setIssuedAt()
+    .setExpirationTime("1 min from now")
+    .sign(key);
+}
+
+export async function decrypt(input: string): Promise<any> {
+  const { payload } = await jwtVerify(input, key, {
+    algorithms: ["HS256"],
+  });
+  return payload;
+}

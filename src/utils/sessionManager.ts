@@ -1,28 +1,8 @@
 import { AppSessionType } from "@/redux/reduxTypes";
-import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
-
-const secretKey = "secret";
-const sessionName = "suppliers-insghtlab-session";
-const key = new TextEncoder().encode(secretKey);
-
-const setExpirationTime = (mins: number) => new Date(Date.now() + mins * 60 * 1000);
-
-export async function encrypt(payload: any) {
-  return await new SignJWT(payload)
-    .setProtectedHeader({ alg: "HS256" })
-    .setIssuedAt()
-    .setExpirationTime("1 min from now")
-    .sign(key);
-}
-
-export async function decrypt(input: string): Promise<any> {
-  const { payload } = await jwtVerify(input, key, {
-    algorithms: ["HS256"],
-  });
-  return payload;
-}
+import { sessionName } from "./consts";
+import { decrypt, encrypt, setExpirationTime } from "./functions";
 
 export async function setSessionCookies(session: AppSessionType) {
   const expires = setExpirationTime(1);
