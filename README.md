@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# <img src="public/images/logo-insight.jpg" alt="Icone da aplicação" title="logo insight" width=25/> Desafio InsgthLab - Fornecedores <img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"/>
 
-## Getting Started
+  Minha solução para o desafio da [Insight Lab](https://www.insightlab.ufc.br/)  proposto para submissão à bolsa do "Projeto Cultura".
 
-First, run the development server:
+  A aplicação conta com: sistema de Login, listagem dos fornecedores e cadastro/edição de fornecedores.
 
+[Instruções para reproduzir o projeto em sua maquina](#iniciar-o-programa)
+
+[Projeto lançado na nuvem](#iniciar-o-programa)
+
+## Índice
+
+  * [Tecnologias utilizadas](#tecnologias-utilizadas)
+  * [Funcionalidades](#funcionalidades)
+    * [Login](#login)
+    * [Visualiação dos dados cadastrados](#definição-de-nome)
+    * [Cadastro e edição dos Fornecedores](#cadastro-e-edição-dos-fornecedores)
+  * [Detalhes Técnicos](#detalhes-técnicos)
+    * [Clonar e iniciar o projeto](#clonar-e-iniciar-o-projeto)
+
+## Tecnologias utilizadas
+
+  A aplicação utiliza dados estáticos em um arquivo JSON no diretorio '/src' do projeto, e utiliza o mesmo como base de dados para a manipulação dos objetos utilizados.
+
+ - [
+  <img src="https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=FFF&style=flat-square"/> Typescript
+  ](https://www.typescriptlang.org/)
+ - [
+  <img src="https://shields.io/badge/React-3178C6?logo=React&logoColor=FFF&style=flat-square"/> React
+  ](https://react.dev/) 
+ - [
+  <img src="https://shields.io/badge/Next.JS-000000?logo=nextdotjs&logoColor=FFF&style=flat-square"/> NextJs
+  ](https://nextjs.org/)
+ - [
+  <img src="https://shields.io/badge/Redux-60A?logo=redux&logoColor=FFF&style=flat-square"/> React Redux
+  ](https://react-redux.js.org/)
+ - [
+  <img src="https://shields.io/badge/Redux-3178C6?logo=antdesign&logoColor=FFF&style=flat-square"/> Ant Design
+  ](https://ant.design/)
+ - [
+  <img src="https://shields.io/badge/-FFF?logo=styledcomponents&logoColor=60A&style=flat-square"/> Styled Components
+  ](https://styled-components.com/)
+
+## Funcionalidades
+
+### Login
+
+  <img src="demo/login.png" style="margin: 0 auto;" alt="Tela de login" title="Tela de login" height=300/>
+  <img src="demo/login-mobile.png" style="margin: 0 auto;" alt="Tela de login" title="Tela de login" height=300/>
+
+  A aplicação utiliza um sistema de login para o controle de permissoes de usuario no aplicativo (admin: permissão total, user: apenas vizualização dos dados). Utilizando o sistema de Cookies nativo da ferramenta NextJS para persistir os dados de sessão.
+
+  Ao realizar o login, a aplicação é redirecionada para a listagem de Fornecedores
+
+#### Credenciais
+  Para logar como Administrador:
+  - **usuário:** admin
+  - **senha:** admin
+  
+  Para logar como Leitor:
+  - **usuário:** user
+  - **senha:** user
+
+### Visualiação dos dados cadastrados
+
+  <img src="demo/home.png" style="margin: 0 auto;" alt="Tela de listagem de fornecedores" title="Tela de listagem de fornecedores" height=300/>
+  <img src="demo/home-mobile.png" style="margin: 0 auto;" alt="Tela de listagem de fornecedores" title="Tela de listagem de fornecedores" height=300/>
+
+### Cadastro e edição dos Fornecedores
+
+  <img src="demo/cadastro.png" style="margin: 0 auto;" alt="Tela de cadastro e edição de fornecedor" title="Tela de cadastro e edição de fornecedor" height=300/>
+  <img src="demo/cadastro-mobile.png" style="margin: 0 auto;" alt="Tela de cadastro e edição de fornecedor" title="Tela de cadastro e edição de fornecedor" height=300/>
+
+## Detalhes Técnicos
+
+### Clonar e iniciar o projeto
+
+Clone o codigo fonte com o comando:
+```bash
+git clone https://github.com/jorgejunior618/Projeto-Cultura-Insight.git
+```
+Com o projeto na sua maquina, instale as dependencias:
+```bash
+npm i
+```
+E para iniciar o ambiente de desenvolvimento:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
