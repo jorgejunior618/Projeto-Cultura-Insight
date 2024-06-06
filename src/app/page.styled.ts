@@ -18,18 +18,6 @@ export const HomeContainer = styled.section`
       p {
         margin: 6px 0 4px;
       }
-      .options {
-        cursor: pointer;
-        display: flex;
-        width: fit-content;
-        padding: 8px;
-        border-radius: 8px;
-        border: 3px solid ${colors.mainBackground};
-  
-        span svg {
-          font-size: 1.5rem;
-        }
-      }
     }
   }
   #reload {

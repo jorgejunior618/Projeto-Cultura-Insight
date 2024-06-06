@@ -40,8 +40,11 @@ export const FormWrapper = styled.form`
     grid-template-columns: fit-content(100%) fit-content(100%);
     column-gap: 15px;
     align-items: center;
-    margin-top: 15px;
-    margin-left: auto;
+    margin: 15px 15px 0 auto;
+
+    @media only screen and (max-width: 750px) {
+      margin-bottom: 35px;
+    }
   }
 `;
 

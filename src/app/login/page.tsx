@@ -2,7 +2,7 @@
 
 import { Input, message } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import { useCallback, useEffect, useState } from "react";
+import { KeyboardEvent, useCallback, useEffect, useState } from "react";
 import { InputWrapper, LoginWrapper } from "./styled";
 import { fontSizes, fontWeights } from "@/constants";
 import CustomButton from "@/components/button";
@@ -24,9 +24,14 @@ export default function Login() {
     dispatch(sessionActions.login(loginText, passwordText));
   }, [loginText, passwordText]);
 
+  const keyHandler = useCallback((event: KeyboardEvent<HTMLInputElement>) => {
+    const { key } = event;
+    if (key === "Enter") handleLogin();
+  }, [handleLogin])
+
   useEffect(() => {
     if (sessionState.logged) router.push('/');
-  }, [sessionState])
+  }, [sessionState]);
 
   return (
     <LoginWrapper>
@@ -39,6 +44,7 @@ export default function Login() {
           onChange={e => setLoginText(e.target.value)}
           name="login"
           placeholder="seu_usuario"
+          onKeyUp={keyHandler}
         />
       </InputWrapper>
       <InputWrapper>
@@ -48,6 +54,7 @@ export default function Login() {
           onChange={e => setPasswordText(e.target.value)}
           name="password"
           iconRender={(visible) => (visible ? <EyeInvisibleOutlined /> : <EyeTwoTone />)}
+          onKeyUp={keyHandler}
         />
       </InputWrapper>
       <CustomButton onClick={handleLogin}><span className={fontWeights.bold}>Entrar</span></CustomButton>

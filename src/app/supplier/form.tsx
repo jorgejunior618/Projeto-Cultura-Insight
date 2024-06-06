@@ -278,7 +278,7 @@ export default function SupplierForm({supplierID}: FormParams) {
       </CustomButton>
       <CustomButton onClick={() => validateForm()}>
         <span className={fontSizes.regular + ' ' + fontWeights.bold}>
-          {supplierState.editing ? "Atualzar" : "Adicionar"}
+          {supplierState.editing ? "Atualizar" : "Adicionar"}
         </span>
       </CustomButton>
     </div>

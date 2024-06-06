@@ -15,14 +15,28 @@ export const CardContainer = styled.li`
     padding: 0 25px;
     display: grid;
     align-items: center;
-    grid-template-columns: 1fr 5fr 38px;
+    grid-template-columns: 1fr 38px;
     column-gap: 25px;
     width: 100%;
 
+    &.showThumb {
+      grid-template-columns: 1fr 5fr 38px;
+    }
     p {
       line-height: 1rem;
     }
+    .options {
+      cursor: pointer;
+      display: flex;
+      width: fit-content;
+      padding: 8px;
+      border-radius: 8px;
+      border: 3px solid ${colors.mainBackground};
 
+      span svg {
+        font-size: 1.5rem;
+      }
+    }
     .thumb {
       display: flex;
       justify-content: center;
@@ -44,5 +58,29 @@ export const CardContainer = styled.li`
   &:hover {
     width: 98.5%;
     box-shadow: 0 3px 3px #FFFFFF20;
+  }
+
+  @media only screen and (max-width: 750px) {
+    main {
+      display: flex;
+      flex-direction: column;
+      grid-template-columns: none;
+      column-gap: unset;
+
+      .thumb {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      section.cardChildren {
+        width: 100%;
+      }
+      .options {
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+      }
+      section.cardOptions {
+      }
+    }
   }
 `;

@@ -106,7 +106,6 @@ a {
 button.ant-btn {
   padding: 8px 15px;
   height: auto;
-
   color: white !important;
   background-color: #0A829B !important;
   border: 2px solid white !important;
@@ -117,14 +116,12 @@ button.ant-btn:hover {
   background-color: white !important;
   border: 2px solid #0A829B !important;
 }
-/* button.ant-btn:hover {
-    background-color: #060A20 !important;
-    color: #0A829B !important;
-  } */
 button.ant-btn.floatingButton {
+  padding: 0 20px;
+
   position: absolute;
-  bottom: 10vh;
-  right: 10vw;
+  bottom: 5vh;
+  right: calc(50vw - 610px);
 }
 button.ant-btn.secondary {
   color: #0A829B !important;
@@ -147,13 +144,24 @@ button.ant-btn.cancel:hover {
   background-color: #BF1919 !important;
   color: white !important;
 }
+@media only screen and (max-width: 1300px) {
+  button.ant-btn.floatingButton {
+    padding: 0 20px;
+    right: 50px;
+  }
+}
 @media only screen and (max-width: 1150px) {
   .viewContainer .mainContainer {
     width: calc(100% - 50px);
   }
 }
 @media only screen and (max-width: 750px) {
-  .ant-row {
+  button.ant-btn.floatingButton {
+    padding: 6px 20px;
+    right: 5vh;
+    bottom: 5vh;
+  }
+    .ant-row {
     display: flex !important;
     flex-direction: column !important;
   }
@@ -165,7 +173,10 @@ button.ant-btn.cancel:hover {
     width: 100% !important;
     max-width: 100% !important;
   }
-  .font-big, .font-xtrabig {
+  .font-big {
     font-size: 1.5rem;
+  }
+  .font-xtrabig {
+    font-size: 1.9rem;
   }
 }

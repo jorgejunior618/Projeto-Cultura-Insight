@@ -19,6 +19,19 @@ export const LoginWrapper = styled.section`
     margin-top: 35px;
     width: 100%;
   }
+
+  @media only screen and (max-width: 750px) {
+    position: absolute;
+    max-width: 100%;
+    margin: 0;
+    left: 0;
+    padding: 50px 60px;
+    border-radius: 0;
+    border: none;
+    height: calc(100vh - 110px);
+    /* 
+    right: 0; */
+  }
 `;
 export const InputWrapper = styled.section`
   display: flex;
