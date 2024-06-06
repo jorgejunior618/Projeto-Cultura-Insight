@@ -45,8 +45,10 @@
 
 ### Login
 
+<div style="display: flex;">
   <img src="demo/login.png" style="margin: 0 auto;" alt="Tela de login" title="Tela de login" height=300/>
   <img src="demo/login-mobile.png" style="margin: 0 auto;" alt="Tela de login" title="Tela de login" height=300/>
+</div>
 
   A aplicação utiliza um sistema de login para o controle de permissoes de usuario no aplicativo (admin: permissão total, user: apenas vizualização dos dados). Utilizando o sistema de Cookies nativo da ferramenta NextJS para persistir os dados de sessão.
 
@@ -63,13 +65,17 @@
 
 ### Visualiação dos dados cadastrados
 
+<div style="display: flex;">
   <img src="demo/home.png" style="margin: 0 auto;" alt="Tela de listagem de fornecedores" title="Tela de listagem de fornecedores" height=300/>
   <img src="demo/home-mobile.png" style="margin: 0 auto;" alt="Tela de listagem de fornecedores" title="Tela de listagem de fornecedores" height=300/>
+</div>
 
 ### Cadastro e edição dos Fornecedores
 
+<div style="display: flex;">
   <img src="demo/cadastro.png" style="margin: 0 auto;" alt="Tela de cadastro e edição de fornecedor" title="Tela de cadastro e edição de fornecedor" height=300/>
   <img src="demo/cadastro-mobile.png" style="margin: 0 auto;" alt="Tela de cadastro e edição de fornecedor" title="Tela de cadastro e edição de fornecedor" height=300/>
+</div>
 
 ## Detalhes Técnicos
 
