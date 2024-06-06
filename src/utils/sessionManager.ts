@@ -1,3 +1,4 @@
+import { AppSessionType } from "@/redux/reduxTypes";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
@@ -23,20 +24,18 @@ export async function decrypt(input: string): Promise<any> {
   return payload;
 }
 
-export async function login(formData: FormData) {
-  const user = { email: formData.get("email"), name: "John" };
-
+export async function setSessionCookies(session: AppSessionType) {
   const expires = setExpirationTime(1);
-  const session = await encrypt({ user, expires });
+  const encriptedSession = await encrypt({ session, expires });
 
-  cookies().set(sessionName, session, { expires, httpOnly: true });
+  cookies().set(sessionName, encriptedSession, { expires, httpOnly: true });
 }
 
-export async function logout() {
+export async function removeSessionCookies() {
   cookies().set(sessionName, "", { expires: new Date(0) });
 }
 
-export async function getSession() {
+export async function getSession(): Promise<{session: AppSessionType} | null> {
   const session = cookies().get(sessionName)?.value;
   if (!session) return null;
   return await decrypt(session);
