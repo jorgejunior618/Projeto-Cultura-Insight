@@ -20,7 +20,7 @@ export const LoginWrapper = styled.section`
     width: 100%;
   }
 
-  @media only screen and (max-width: 750px) {
+  @media only screen and (max-width: 800px) {
     position: absolute;
     max-width: 100%;
     margin: 0;

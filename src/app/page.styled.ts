@@ -16,7 +16,7 @@ export const HomeContainer = styled.section`
         align-items: center;
       }
       p {
-        margin: 6px 0 4px;
+        margin: 8px 0 6px;
       }
     }
   }

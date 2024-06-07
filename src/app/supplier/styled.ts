@@ -42,7 +42,7 @@ export const FormWrapper = styled.form`
     align-items: center;
     margin: 15px 15px 0 auto;
 
-    @media only screen and (max-width: 750px) {
+    @media only screen and (max-width: 800px) {
       margin-bottom: 35px;
     }
   }

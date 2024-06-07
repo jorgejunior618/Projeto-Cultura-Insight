@@ -60,7 +60,7 @@ export const CardContainer = styled.li`
     box-shadow: 0 3px 3px #FFFFFF20;
   }
 
-  @media only screen and (max-width: 750px) {
+  @media only screen and (max-width: 800px) {
     main {
       display: flex;
       flex-direction: column;

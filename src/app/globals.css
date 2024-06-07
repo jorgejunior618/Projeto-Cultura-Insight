@@ -77,18 +77,23 @@ a {
   text-transform: none;
 }
 .font-small {
+  line-height: 1rem;
   font-size: 0.8rem;
 }
 .font-regular {
+  line-height: 1rem;
   font-size: 1rem;
 }
 .font-medium {
+  line-height: 1rem;
   font-size: 1.3rem;
 }
 .font-big {
+  line-height: 1rem;
   font-size: 1.6rem;
 }
 .font-xtrabig {
+  line-height: 1rem;
   font-size: 2.5rem;
 }
 .weigth-light {
@@ -155,7 +160,7 @@ button.ant-btn.cancel:hover {
     width: calc(100% - 50px);
   }
 }
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 800px) {
   button.ant-btn.floatingButton {
     padding: 6px 20px;
     right: 5vh;
