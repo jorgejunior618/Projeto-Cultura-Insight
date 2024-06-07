@@ -4,7 +4,16 @@
 
   A aplicação conta com: sistema de Login, listagem dos fornecedores e cadastro/edição de fornecedores.
 
-[Instruções para reproduzir o projeto em sua maquina](#iniciar-o-programa)
+#### Credenciais padrão
+  Para logar como Administrador:
+  - **usuário:** admin
+  - **senha:** admin
+  
+  Para logar como Leitor:
+  - **usuário:** user
+  - **senha:** user
+
+[Instruções para reproduzir o projeto em sua maquina](#clonar-e-iniciar-o-projeto)
 
 [Projeto lançado na nuvem](#iniciar-o-programa)
 
@@ -53,15 +62,6 @@
   A aplicação utiliza um sistema de login para o controle de permissoes de usuario no aplicativo (admin: permissão total, user: apenas vizualização dos dados). Utilizando o sistema de Cookies nativo da ferramenta NextJS para persistir os dados de sessão.
 
   Ao realizar o login, a aplicação é redirecionada para a listagem de Fornecedores
-
-#### Credenciais
-  Para logar como Administrador:
-  - **usuário:** admin
-  - **senha:** admin
-  
-  Para logar como Leitor:
-  - **usuário:** user
-  - **senha:** user
 
 ### Visualiação dos dados cadastrados
 
