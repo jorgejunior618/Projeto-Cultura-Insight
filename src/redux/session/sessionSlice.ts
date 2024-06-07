@@ -25,6 +25,7 @@ function login(username: string, password: string) {
       dispatch(setLogin(user));
     } catch (error) {
       console.log(`erro no login: ${error}`);
+      console.log(error);
       if (Object.getOwnPropertyNames(error).includes('message')) {
         message.error(`${(error as any).message}`);
       } else {
