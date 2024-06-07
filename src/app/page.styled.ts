@@ -14,9 +14,11 @@ export const HomeContainer = styled.section`
     li {
       h2 {
         align-items: center;
+        line-height: 1rem;
       }
       p {
         margin: 8px 0 6px;
+        line-height: 1rem;
       }
     }
   }
