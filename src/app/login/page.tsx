@@ -62,7 +62,7 @@ export default function Login() {
     </LoginWrapper>
     <LoginTip>
       <main>
-      <Tooltip title="Login padrão: user: admin | senha: admin"><InfoCircleTwoTone twoToneColor={colors.green}/></Tooltip>
+      <Tooltip title="Login padrão: usuário: admin | senha: admin"><InfoCircleTwoTone twoToneColor={colors.green}/></Tooltip>
       </main>
     </LoginTip>
     </>
