@@ -30,14 +30,14 @@ export default function Card({
           )}
         </div> : null}
         <section className="cardChildren">{children}</section>
-        <Dropdown
+        {options ? <Dropdown
           trigger={['click']}
           menu={options}
           placement="top"
           overlayStyle={{ minWidth: 'fit-content' }}
         >
           <section className="options"><MoreOutlined /></section>
-        </Dropdown>
+        </Dropdown> : null}
       </main>
     </CardContainer>
   );

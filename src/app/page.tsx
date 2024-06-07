@@ -54,7 +54,7 @@ export default function Home() {
       {homeState.suppliers.map(supplier => (
       <Card
         key={supplier.cnpj}
-        options={{ items: [
+        options={sessionState.user && sessionState.user.addSupplier ? { items: [
           {
             label: (<DropdownOption className="editOption" onClick={() => goToSupplierForm(supplier)}>
               Editar <EditOutlined />
@@ -67,12 +67,12 @@ export default function Home() {
             </DropdownOption>),
             key: '1'
           }
-        ]}}
+        ]} : undefined}
       >
         <section>
-          <h2 className={fontSizes.medium + ' ' + fontWeights.bold}>
-            {supplier.name + ' '}
-            <span className={fontSizes.regular + ' ' + fontWeights.regular}>(nome fantasia: {supplier.alternativeName})</span>
+          <h2>
+            <span className={fontSizes.medium + ' ' + fontWeights.bold}>{supplier.name + ' '}</span>
+            <span className={fontSizes.regular}>(nome fantasia: {supplier.alternativeName})</span>
           </h2>
           <p>CNPJ: {supplier.cnpj}</p>
           <p>{supplier.address.line_one}</p>
