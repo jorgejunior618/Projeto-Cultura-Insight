@@ -117,7 +117,7 @@ export default function SupplierForm({supplierID}: FormParams) {
     if (supplierState.supplier.cnpj.length === 0 && supplierID.length !== 0) {
       dispatch(supplierActions.searchSupplier(supplierID));
     }
-  }, [dispatch, supplierID, supplierState.supplier.cnpj]);
+  }, [dispatch, supplierID]);
 
   useEffect(() => {
     if (supplierState.completed) {

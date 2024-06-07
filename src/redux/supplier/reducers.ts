@@ -10,7 +10,7 @@ const reducers = {
     state.supplier = fillSupplier(payload, initialState.supplier);
     state.editing = true;
   },
-  clearSupplierState: (state: SupplierStateType) => {
+  clearSupplierState: (state: SupplierStateType) => {    
     state.editing = false;
     state.loading = false;
     state.completed = false;

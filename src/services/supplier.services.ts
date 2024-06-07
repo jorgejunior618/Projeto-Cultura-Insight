@@ -25,7 +25,7 @@ async function createSupplier(supplier: SupplierType): Promise<{success: boolean
     };
   }
   
-  data.suppliers.push(supplier);
+  data.suppliers = [...data.suppliers, supplier];
   await sleep(750);
   return {
     success: true,
