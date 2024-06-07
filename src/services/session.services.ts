@@ -1,11 +1,8 @@
 "use server"
 
 import { UserSessionType } from "@/redux/reduxTypes";
+import { sleep } from "@/utils/functions";
 import { removeSessionCookies, setSessionCookies } from '@/utils/sessionManager';
-
-async function sleep(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
 
 export async function login(username: string, password: string): Promise<UserSessionType | null> {
   await sleep(1500);
