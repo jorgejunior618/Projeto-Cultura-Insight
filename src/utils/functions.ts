@@ -14,13 +14,14 @@ export const numbersToCNPJ = (str: string) => {
   return cnpj;
 };
 
-export const setExpirationTime = (mins: number) => new Date(Date.now() + mins * 60 * 1000);
+const expirationTimeMins = 60;
+export const setExpirationTime = () => new Date(Date.now() + expirationTimeMins * 60 * 1000);
 
 export async function encrypt(payload: any) {
   return await new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime("1 min from now")
+    .setExpirationTime(`${expirationTimeMins} min from now`)
     .sign(key);
 }
 

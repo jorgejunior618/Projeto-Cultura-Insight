@@ -5,7 +5,7 @@ import { sessionName } from "./consts";
 import { decrypt, encrypt, setExpirationTime } from "./functions";
 
 export async function setSessionCookies(session: AppSessionType) {
-  const expires = setExpirationTime(1);
+  const expires = setExpirationTime();
   const encriptedSession = await encrypt({ session, expires });
 
   cookies().set(sessionName, encriptedSession, { expires, httpOnly: true });
@@ -27,7 +27,7 @@ export async function updateSession(request: NextRequest) {
 
   const parsed = await decrypt(session);
   
-  parsed.expires = setExpirationTime(1);
+  parsed.expires = setExpirationTime();
   const res = NextResponse.next();
   res.cookies.set({
     name: sessionName,
