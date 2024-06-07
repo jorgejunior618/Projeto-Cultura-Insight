@@ -10,7 +10,7 @@ export const HomeContainer = styled.section`
 
   ul {
     flex: 1;
-    padding-bottom: 25px;
+    padding-bottom: 70px;
     li {
       h2 {
         align-items: center;
