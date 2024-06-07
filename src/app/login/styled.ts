@@ -60,10 +60,12 @@ export const LoginTip = styled.section`
     height: 100vh;
     background-color: transparent;
     color: white;
-
+    pointer-events: none;
+    
     animation: fadeBg 2s linear;
-
+    
     span {
+      pointer-events: auto;
       position: absolute;
       top: calc(10vh + 135px);
       right: calc(50vw - 200px);
