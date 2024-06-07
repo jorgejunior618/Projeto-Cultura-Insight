@@ -17,18 +17,35 @@ async function getSupplier(supplierID: string): Promise<SupplierType | undefined
   return suppliers.find(sup => sup.cnpj === supplierID);
 }
 
-async function createSupplier(supplier: SupplierType): Promise<SupplierType[]> {
+async function createSupplier(supplier: SupplierType): Promise<{success: boolean; message: string}> {
   const currentSuppliers = await getSuppliersFile();
   if (!currentSuppliers) {
-    if (mockData.suppliers.find(sup => sup.cnpj === supplier.cnpj)) throw new Error("Este CNPJ ja está cadastrado em um fornecedor");
+    if (mockData.suppliers.find(sup => sup.cnpj === supplier.cnpj)) {
+      return {
+        success: false,
+        message: "Este CNPJ ja está cadastrado em um fornecedor"
+      };
+    }
+
     setSuppliersFile([...mockData.suppliers, supplier]);
-    return [...mockData.suppliers, supplier];
+    return {
+      success: true,
+      message: "Fornecedor cadastrado com sucesso"
+    };
   }
-  if (currentSuppliers.find(sup => sup.cnpj === supplier.cnpj)) throw new Error("Este CNPJ ja está cadastrado em um fornecedor");
+  if (currentSuppliers.find(sup => sup.cnpj === supplier.cnpj)) {
+    return {
+      success: false,
+      message: "Este CNPJ ja está cadastrado em um fornecedor"
+    };
+  }
   
   const suppliers = [...currentSuppliers, supplier];
   setSuppliersFile(suppliers);
-  return suppliers;
+  return {
+    success: true,
+    message: "Fornecedor cadastrado com sucesso"
+  };
 }
 
 async function updateSupplier(supplier: SupplierType): Promise<SupplierType[]> {

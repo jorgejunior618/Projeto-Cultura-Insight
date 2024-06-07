@@ -7,22 +7,12 @@ async function sleep(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-export async function login(username: string, password: string): Promise<UserSessionType> {
+export async function login(username: string, password: string): Promise<UserSessionType | null> {
   await sleep(1500);
   const user: UserSessionType = { username, addSupplier: true };
-  if (username === 'user' && password === 'user') {
-    console.log('if');
-    
-    user.addSupplier = false;
-  }
-  else if (username !== 'admin' || password !== 'admin') {
-    console.log('else if');
-    
-    throw new Error('Credenciais inválidas');
-    }
-  console.log('setSessionCookies');
+  if (username === 'user' && password === 'user') user.addSupplier = false;
+  else if (username !== 'admin' || password !== 'admin') return null;
   await setSessionCookies({user, logged: true});
-  console.log('return user');
   return user;
 }
 export async function logout(): Promise<boolean> {

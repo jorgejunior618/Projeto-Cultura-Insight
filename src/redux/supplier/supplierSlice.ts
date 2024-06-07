@@ -61,18 +61,16 @@ function createSupplier(supplier: SupplierType) {
   return async function (dispatch: DispatchType) {
     dispatch(startLoading());
     try {
-      await supplierServices.createSupplier(supplier);
+      const res = await supplierServices.createSupplier(supplier);
 
       await sleep(1500);
-      dispatch(completeEditing());
-      message.success('Fornecedor adicionado com sucesso');
-    } catch (error) {
-      console.log(`erro ao cadastrar fornecedor: ${error}`);
-      if (Object.getOwnPropertyNames(error).includes('message')) {
-        message.error(`${(error as any).message}`);
-      } else {
-        message.error('Não foi possível cadastrar o Fornecedor, tente novamente');
+      if (res.success) {
+        dispatch(completeEditing());
+        message.success(res.message);
       }
+      else message.error(res.message);
+    } catch (error) {
+      message.error('Não foi possível cadastrar o Fornecedor, tente novamente');
     } finally {
       dispatch(stopLoading());
     }

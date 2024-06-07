@@ -21,16 +21,10 @@ function login(username: string, password: string) {
 
     try {
       const user = await sessionServices.login(username, password);
-
-      dispatch(setLogin(user));
+      if (user) dispatch(setLogin(user));
+      else message.error("Credenciais inválidas");
     } catch (error) {
-      console.log(`erro no login: ${error}`);
-      console.log(error);
-      if (Object.getOwnPropertyNames(error).includes('message')) {
-        message.error(`${(error as any).message}`);
-      } else {
-        message.error('Não foi possível entrar, tente novamente');
-      }
+      message.error('Não foi possível entrar, tente novamente');
     } finally {
       dispatch(setLoading(false));
     }
