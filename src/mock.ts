@@ -1,0 +1,67 @@
+const data = {
+  "suppliers": [
+    {
+      "name": "Fornecedor de teste 1",
+      "alternativeName": "Um Nome Bem Pensado",
+      "cnpj": "11.111.111/1111-11",
+      "address": {
+        "line_one": "Avenida do nunca, nº 111, Bairro da Suposição, Fortaleza",
+        "line_two": "Proximo da terra prometida",
+        "number": "5",
+        "country": "Brasil",
+        "state": "CE"
+      }
+    },
+    {
+      "name": "Fornecedor de teste 2",
+      "alternativeName": "otro nome bonitinho",
+      "cnpj": "22.222.222/2222-22",
+      "address": {
+        "line_one": "Avenida do nunca, nº 222, Bairro da Suposição, Fortaleza",
+        "line_two": "Proximo da terra prometida",
+        "number": "5",
+        "country": "Brasil",
+        "state": "CE"
+      }
+    },
+    {
+      "name": "Fornecedor de teste 3",
+      "alternativeName": "otro nome bonitinho",
+      "cnpj": "33.333.333/3333-33",
+      "address": {
+        "line_one": "Avenida do nunca, nº 333, Bairro da Suposição, Fortaleza",
+        "line_two": "Proximo da terra prometida",
+        "number": "5",
+        "country": "Brasil",
+        "state": "CE"
+      }
+    },
+    {
+      "name": "Fornecedor de teste 4",
+      "alternativeName": "otro nome bonitinho",
+      "cnpj": "44.444.444/4444-44",
+      "address": {
+        "line_one": "Avenida do nunca, nº 444, Bairro da Suposição, Fortaleza",
+        "line_two": "Proximo da terra prometida",
+        "number": "5",
+        "country": "Brasil",
+        "state": "CE"
+      }
+    },
+    {
+      "name": "Fornecedor de teste 5",
+      "alternativeName": "otro nome bonitinho",
+      "cnpj": "55.555.555/5555-55",
+      "address": {
+        "line_one": "Avenida do nunca, nº 555, Bairro da Suposição, Fortaleza",
+        "line_two": "Proximo da terra prometida",
+        "number": "5",
+        "country": "Brasil",
+        "state": "CE"
+      }
+    }
+    
+  ]
+}
+
+export default data;
