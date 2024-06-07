@@ -16,7 +16,7 @@ export type SupplierType = {
   cnpj: string;
   address: {
     line_one: string;
-    line_two: string | null;
+    line_two: string;
     number: string;
     state: string;
     country: string;
