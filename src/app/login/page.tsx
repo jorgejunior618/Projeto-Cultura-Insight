@@ -1,10 +1,10 @@
 "use client"
 
-import { Input, message } from "antd";
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { Input, Tooltip, message } from "antd";
+import { EyeInvisibleOutlined, EyeTwoTone, InfoCircleTwoTone } from '@ant-design/icons';
 import { KeyboardEvent, useCallback, useEffect, useState } from "react";
-import { InputWrapper, LoginWrapper } from "./styled";
-import { fontSizes, fontWeights } from "@/constants";
+import { InputWrapper, LoginTip, LoginWrapper } from "./styled";
+import { colors, fontSizes, fontWeights } from "@/constants";
 import CustomButton from "@/components/button";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { sessionActions } from "@/redux/session/sessionSlice";
@@ -34,6 +34,7 @@ export default function Login() {
   }, [sessionState, router]);
 
   return (
+    <>
     <LoginWrapper>
       <CustomSpin spinning={sessionState.loading} fullscreen />
       <h1 className={fontSizes.xtraBig + ' ' + fontWeights.xtraBold}>Login</h1>
@@ -59,5 +60,11 @@ export default function Login() {
       </InputWrapper>
       <CustomButton onClick={handleLogin}><span className={fontWeights.bold}>Entrar</span></CustomButton>
     </LoginWrapper>
+    <LoginTip>
+      <main>
+      <Tooltip title="Login padrão: user: admin | senha: admin"><InfoCircleTwoTone twoToneColor={colors.green}/></Tooltip>
+      </main>
+    </LoginTip>
+    </>
   );
 }

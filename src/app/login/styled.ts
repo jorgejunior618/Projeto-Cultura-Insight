@@ -50,3 +50,44 @@ export const InputWrapper = styled.section`
     opacity: 1;
   }
 `;
+
+export const LoginTip = styled.section`
+  main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+    color: white;
+
+    animation: fadeBg 2s linear;
+
+    span {
+      position: absolute;
+      top: calc(10vh + 135px);
+      right: calc(50vw - 200px);
+      
+      svg {
+        font-size: 1.4rem;
+        animation: fadeInfo 2s linear;
+      }
+    }
+  }
+  @keyframes fadeBg {
+    0% { background-color: black }
+    50% { background-color: black }
+    100% { background-color: transparent }
+  }
+  @keyframes fadeInfo {
+    0% { scale: 200% }
+    50% { scale: 200% }
+    100% { scale: 100% }
+  }
+  @media only screen and (max-width: 800px) {
+    main span {
+      top: 135px;
+      right: 70px;
+    }
+  }
+`;
