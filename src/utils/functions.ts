@@ -14,6 +14,10 @@ export const numbersToCNPJ = (str: string) => {
   return cnpj;
 };
 
+export async function sleep(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 const expirationTimeMins = 60;
 export const setExpirationTime = () => new Date(Date.now() + expirationTimeMins * 60 * 1000);
 
